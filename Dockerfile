@@ -8,3 +8,5 @@ RUN mkdir /goroot && mkdir /gopath && curl https://storage.googleapis.com/golang
 ENV GOROOT /goroot
 ENV GOPATH /gopath
 ENV PATH $PATH:$GOROOT/bin:$GOPATH/bin
+
+RUN go get github.com/tools/godep
