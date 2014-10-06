@@ -1,6 +1,7 @@
 FROM myzsh/myzsh
 
 VOLUME /work
+VOLUME /root/.ssh
 
 RUN yum update -y && yum -y install curl git mercurial bzr tar vim
 
