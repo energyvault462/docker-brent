@@ -1,9 +1,11 @@
 FROM myzsh/myzsh
 
 VOLUME /work
-VOLUME /root/.ssh
+VOLUME /home
 
 RUN yum update -y && yum -y install curl git mercurial bzr tar vim
+
+RUN sed -i 's/\root/\home/' /etc/passwd
 
 RUN git clone --recursive https://github.com/dan9186/Vimderp.git /root/.vim && cd /root/.vim && ./install.sh
 
