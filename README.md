@@ -6,5 +6,5 @@ My personal working environment in docker
 Usage
 ==============
 ```
-docker run -i -t -v ~/:/home dan9186/dan9186
+docker run -i -t -v $PWD:/docker dan9186/dan9186
 ```

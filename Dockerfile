@@ -1,8 +1,8 @@
 FROM dan9186/devopsbase
 
-#VOLUME /work
-#VOLUME /home
+VOLUME ["/docker"]
 
-#ENV HOME /home
-
-RUN git clone --recursive https://github.com/dan9186/Vimderp.git /root/.vim && cd /root/.vim && ./install.sh
+WORKDIR /root
+RUN git clone --recursive https://github.com/dan9186/Vimderp.git .vim && \
+    cd .vim && \
+    ./install.sh
