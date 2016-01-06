@@ -14,15 +14,14 @@ RUN echo "dan9186 ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 # Set gopath ownership
 RUN chown -R dan9186 $GOPATH
 
-# Do everything else as custom user
-USER dan9186
+ADD zshrc /home/dan9186/.zshrc
+RUN chown dan9186 /home/dan9186/.zshrc
 
 # Install customizations into homedir
+USER dan9186
 ENV PATH $HOME:$PATH
-
-# Install custom shell
 RUN git clone https://github.com/myzsh/myzsh $HOME/.myzsh && \
-    cp $HOME/.myzsh/samples/zshrc.default $HOME/.zshrc
+    git clone http://github.com/myzsh/myzsh-golang $HOME/.myzsh/remotes/golang
 
 # Install custom vim settings
 RUN git clone --recursive https://github.com/dan9186/Vimderp.git $HOME/.vim && \
