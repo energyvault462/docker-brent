@@ -23,7 +23,8 @@ RUN git clone https://github.com/myzsh/myzsh $HOME/.myzsh && \
 # Install custom vim settings
 RUN git clone --recursive https://github.com/dan9186/Vimderp.git .vim && \
     cd .vim && \
-    ./install.sh
+    ./install.sh && \
+    ./bundle/YouCompleteMe/install.py
 
 # Provide persistent project directory
 VOLUME ["/docker"]
