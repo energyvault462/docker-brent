@@ -5,7 +5,7 @@ MAINTAINER Daniel Hess <dan9186@gmail.com>
 # Install custom deps
 RUN yum -y update && \
     yum -y upgrade && \
-    yum -y install zsh
+    yum -y install sudo zsh
 
 # Install customizations into homedir
 WORKDIR /root
