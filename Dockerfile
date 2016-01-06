@@ -13,7 +13,6 @@ RUN echo "dan9186 ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 USER dan9186
 
 # Install customizations into homedir
-WORKDIR /home/dan9186
 ENV PATH $HOME:$PATH
 
 # Install custom shell
@@ -21,8 +20,8 @@ RUN git clone https://github.com/myzsh/myzsh $HOME/.myzsh && \
     cp $HOME/.myzsh/samples/zshrc.default $HOME/.zshrc
 
 # Install custom vim settings
-RUN git clone --recursive https://github.com/dan9186/Vimderp.git .vim && \
-    cd .vim && \
+RUN git clone --recursive https://github.com/dan9186/Vimderp.git $HOME/.vim && \
+    cd $HOME/.vim && \
     ./install.sh && \
     ./bundle/YouCompleteMe/install.py
 
