@@ -10,6 +10,11 @@ RUN yum -y update && \
 # Create custom user
 RUN useradd -ms /bin/zsh dan9186
 RUN echo "dan9186 ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
+
+# Set gopath ownership
+RUN chown -R dan9186 $GOPATH
+
+# Do everything else as custom user
 USER dan9186
 
 # Install customizations into homedir
