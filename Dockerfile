@@ -7,8 +7,13 @@ RUN yum -y update && \
     yum -y upgrade && \
     yum -y install sudo zsh
 
+# Create custom user
+RUN useradd -ms /bin/zsh dan9186
+RUN echo "dan9186 ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
+USER dan9186
+
 # Install customizations into homedir
-WORKDIR /root
+WORKDIR /home/dan9186
 ENV PATH $HOME:$PATH
 
 # Install custom shell
