@@ -20,6 +20,9 @@ RUN chown dan9186 /home/dan9186/.zshrc
 # Install customizations into homedir
 USER dan9186
 ENV PATH $HOME:$PATH
+RUN ln -s /gopath $HOME/go
+
+# Install custom shell
 RUN git clone https://github.com/myzsh/myzsh $HOME/.myzsh && \
     git clone http://github.com/myzsh/myzsh-golang $HOME/.myzsh/remotes/golang
 
