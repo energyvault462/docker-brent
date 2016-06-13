@@ -11,8 +11,9 @@ RUN yum -y update && \
 RUN useradd -ms /bin/zsh dan9186
 RUN echo "dan9186 ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
-# Set gopath ownership
-RUN chown -R dan9186 $GOPATH
+# Set ownerships
+RUN chown -R dan9186 $GOPATH && \
+	 chown -R dan9186 /usr/local/rvm
 
 ADD zshrc /home/dan9186/.zshrc
 RUN chown dan9186 /home/dan9186/.zshrc
