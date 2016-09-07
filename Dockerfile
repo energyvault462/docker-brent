@@ -32,10 +32,12 @@ RUN git clone --recursive https://github.com/dan9186/Vimderp.git $HOME/.vim && \
     ./bundle/YouCompleteMe/install.py
 
 # Add custom configs
+USER root
 ADD zshrc /home/dan9186/.zshrc
 RUN chown dan9186 /home/dan9186/.zshrc
 ADD gitconfig /home/dan9186/.gitconfig
 RUN chown dan9186 /home/dan9186/.gitconfig
+USER dan9186
 
 # Provide persistent project directory
 VOLUME ["/docker"]
