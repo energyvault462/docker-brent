@@ -17,6 +17,8 @@ RUN chown -R dan9186 $GOPATH && \
 
 ADD zshrc /home/dan9186/.zshrc
 RUN chown dan9186 /home/dan9186/.zshrc
+ADD gitconfig /home/dan9186/.gitconfig
+RUN chown dan9186 /home/dan9186/.gitconfig
 
 # Install customizations into homedir
 USER dan9186
