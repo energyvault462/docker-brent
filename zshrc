@@ -8,7 +8,7 @@ TMPDIR="/tmp"
 THEME="default"
 
 # This is the list of modules that generate Left Primary output.
-LPRIMARY=(pwd svn git jobs vim)
+LPRIMARY=(pwd git jobs vim)
 
 # This is the list of modules that generate Left Secondary output.
 LSECONDARY=(exitcode userhost gettime)
