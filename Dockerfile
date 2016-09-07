@@ -31,6 +31,10 @@ RUN git clone --recursive https://github.com/dan9186/Vimderp.git $HOME/.vim && \
     ./install.sh && \
     ./bundle/YouCompleteMe/install.py
 
+# Install versions of Ruby
+RUN /usr/local/rvm/bin/rvm install 2.2.4 && \
+	 /usr/local/rvm/bin/rvm install 2.3.1
+
 # Add custom configs
 USER root
 ADD zshrc /home/dan9186/.zshrc
