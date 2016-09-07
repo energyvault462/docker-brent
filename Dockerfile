@@ -15,11 +15,6 @@ RUN echo "dan9186 ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 RUN chown -R dan9186 $GOPATH && \
 	 chown -R dan9186 /usr/local/rvm
 
-ADD zshrc /home/dan9186/.zshrc
-RUN chown dan9186 /home/dan9186/.zshrc
-ADD gitconfig /home/dan9186/.gitconfig
-RUN chown dan9186 /home/dan9186/.gitconfig
-
 # Install customizations into homedir
 USER dan9186
 ENV USER dan9186
@@ -35,6 +30,12 @@ RUN git clone --recursive https://github.com/dan9186/Vimderp.git $HOME/.vim && \
     cd $HOME/.vim && \
     ./install.sh && \
     ./bundle/YouCompleteMe/install.py
+
+# Add custom configs
+ADD zshrc /home/dan9186/.zshrc
+RUN chown dan9186 /home/dan9186/.zshrc
+ADD gitconfig /home/dan9186/.gitconfig
+RUN chown dan9186 /home/dan9186/.gitconfig
 
 # Provide persistent project directory
 VOLUME ["/docker"]
