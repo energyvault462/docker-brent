@@ -22,6 +22,7 @@ RUN chown dan9186 /home/dan9186/.gitconfig
 
 # Install customizations into homedir
 USER dan9186
+ENV USER dan9186
 ENV PATH $HOME:$PATH
 RUN ln -s /gopath $HOME/go
 
