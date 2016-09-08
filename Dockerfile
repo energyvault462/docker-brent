@@ -35,6 +35,9 @@ RUN git clone --recursive https://github.com/dan9186/Vimderp.git $HOME/.vim && \
 RUN /usr/local/rvm/bin/rvm install 2.2.4 && \
 	 /usr/local/rvm/bin/rvm install 2.3.1
 
+# Add rvm configs
+RUN /usr/local/rvm/bin/rvm rvmrc warning ignore allGemfile
+
 # Add custom configs
 USER root
 ADD zshrc /home/dan9186/.zshrc
