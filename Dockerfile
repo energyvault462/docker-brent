@@ -29,7 +29,7 @@ RUN git clone https://github.com/myzsh/myzsh $HOME/.myzsh && \
 RUN git clone --recursive https://github.com/dan9186/Vimderp.git $HOME/.vim && \
     cd $HOME/.vim && \
     ./install.sh && \
-    ./bundle/YouCompleteMe/install.py
+    ./bundle/YouCompleteMe/install.py --gocode-completer
 
 # Install versions of Ruby
 RUN /usr/local/rvm/bin/rvm install 2.2.4 && \
