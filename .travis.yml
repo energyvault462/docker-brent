@@ -1,0 +1,4 @@
+script:
+  - docker build -t dan9186 .
+services:
+  - docker
