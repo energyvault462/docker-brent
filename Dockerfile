@@ -36,7 +36,7 @@ RUN /usr/local/rvm/bin/rvm install 2.2.4 && \
 	 /usr/local/rvm/bin/rvm install 2.3.1
 
 # Add rvm configs
-RUN /usr/local/rvm/bin/rvm rvmrc warning ignore allGemfile
+RUN /usr/local/rvm/bin/rvm rvmrc warning ignore allGemfiles
 
 # Add custom configs
 USER root
