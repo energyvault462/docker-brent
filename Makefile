@@ -1,4 +1,4 @@
-GIT_CHANGES := $(shell git diff-tree --no-commit-id --name-only -r $(git rev-parse HEAD) | cut -d/ -f1 | grep -v '.travs.yml')
+GIT_CHANGES := $(shell git diff-tree --no-commit-id --name-only -r $(shell git rev-parse HEAD) | cut -d/ -f1 | grep -v '.travs.yml')
 
 all: build
 
