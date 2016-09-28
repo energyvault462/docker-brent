@@ -23,3 +23,9 @@ docker run -it \
 -v $HOME/.ssh:/home/dan9186/.ssh \
 -v $PWD:/docker dan9186/dan9186
 ```
+
+#Purpose
+
+* forceably find and document elements missing from the environment
+* encourages proper saving of important work
+* garbage is cleaned up through destruction of container
