@@ -54,10 +54,9 @@ RUN /usr/local/rvm/bin/rvm rvmrc warning ignore allGemfiles
 
 # Add custom configs
 USER root
-ADD zshrc /home/dan9186/.zshrc
-RUN chown dan9186 /home/dan9186/.zshrc
-ADD gitconfig /home/dan9186/.gitconfig
-RUN chown dan9186 /home/dan9186/.gitconfig
+ADD ext/zshrc /home/dan9186/.zshrc
+ADD ext/gitconfig /home/dan9186/.gitconfig
+RUN chown -R dan9186 /home/dan9186
 USER dan9186
 
 # Provide persistent project directory
