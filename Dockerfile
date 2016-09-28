@@ -6,13 +6,12 @@ ARG BUILD_DATE
 ARG BUILD_NUMBER
 ARG VERSION
 
-
 LABEL org.metadata.build-date=$BUILD_DATE \
 	   org.metadata.version=$VERSION.$BUILD_NUMBER \
 	   org.metadata.name="Dan9186 Personal Development Environment" \
 	   org.metadata.description="A personalized development environment for Dan9186" \
 	   org.metadata.url="https://github.com/dan9186/docker-dan9186" \
-	   org.metadata.vcs-url="https://github.com/dan9186/docker-dan9186" \
+	   org.metadata.vcs-url="https://github.com/dan9186/docker-dan9186"
 
 # Install custom deps
 RUN yum -y update && \
