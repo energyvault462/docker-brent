@@ -2,6 +2,20 @@ FROM dan9186/devopsbase
 
 MAINTAINER Daniel Hess <dan9186@gmail.com>
 
+ARG BUILD_DATE
+ARG VCS_REF
+ARG VERSION
+
+LABEL org.label-schema.build-date=$BUILD_DATE \
+	   org.label-schema.name="Dan9186 Personal Development Environment" \
+	   org.label-schema.description="A personalized development environment for Dan9186" \
+	   org.label-schema.url="https://github.com/dan9186/docker-dan9186" \
+	   org.label-schema.vcs-ref=$VCS_REF \
+	   org.label-schema.vcs-url="https://github.com/dan9186/docker-dan9186" \
+	   org.label-schema.vendor="Dan9186" \
+	   org.label-schema.version=$VERSION \
+	   org.label-schema.schema-version="1.0"
+
 # Install custom deps
 RUN yum -y update && \
     yum -y upgrade && \

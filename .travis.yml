@@ -1,4 +1,4 @@
 script:
-  - docker build -t dan9186 .
+  - make build
 services:
   - docker
