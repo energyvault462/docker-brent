@@ -4,6 +4,22 @@
 A personalized development environment to include everything needed for Dan9186's daily development cycle.
 
 #Usage
+Isolated environment for testing
+
+```
+docker run -it --rm dan9186/dan9186
+```
+Work in the current host system directory
+
 ```
 docker run -i -t -v $PWD:/docker dan9186/dan9186
+```
+
+Use common configs and keys
+
+```
+docker run -it \
+-v $HOME/.gitconfig:/home/dan9186/.gitconfig \
+-v $HOME/.ssh:/home/dan9186/.ssh \
+-v $PWD:/docker dan9186/dan9186
 ```
