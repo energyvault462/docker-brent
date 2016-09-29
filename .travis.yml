@@ -1,4 +1,7 @@
+before_script:
 script:
-  - ./.travis/build.sh
+  - ./.travis/unshallow.sh
+  - ./.travis/changes.sh
+  - ./.travis/docker_build.sh
 services:
   - docker

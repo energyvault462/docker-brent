@@ -1,10 +1,4 @@
 #!/bin/bash
-git fetch --unshallow
-git config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"
-git fetch origin
-
-GIT_CHANGES=$(git diff --name-only origin/master..HEAD)
-echo "Files Changes: $GIT_CHANGES"
 
 if [[ "$GIT_CHANGES" == *"Dockerfile"* ]]; then
 	echo "Dockerfile changes detected, testing docker build"
