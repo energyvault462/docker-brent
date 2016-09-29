@@ -1,5 +1,5 @@
 #!/bin/bash
-GIT_CHANGES=$(git diff --name-only HEAD)
+GIT_CHANGES=$(git diff --name-only $TRAVIS_COMMIT_RANGE)
 
 echo "Files Changes: $GIT_CHANGES"
 
