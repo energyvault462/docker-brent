@@ -1,4 +1,4 @@
 script:
-  - make build
+  - ./.travis/build.sh
 services:
   - docker
