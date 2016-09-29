@@ -1,6 +1,7 @@
 #!/bin/bash
-GIT_CHANGES=$(git diff --name-only $TRAVIS_COMMIT_RANGE)
+echo "Using Commit Range: $TRAVIS_COMMIT_RANGE"
 
+GIT_CHANGES=$(git diff --name-only $TRAVIS_COMMIT_RANGE)
 echo "Files Changes: $GIT_CHANGES"
 
 if [[ "$GIT_CHANGES" == *"Dockerfile"* ]]; then
@@ -9,4 +10,6 @@ if [[ "$GIT_CHANGES" == *"Dockerfile"* ]]; then
 		--build-arg VCS_REF=`git rev-parse --short HEAD` \
 		--build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` \
 		.
+else
+	echo "No Dockerfile changes, skipping docker build"
 fi
