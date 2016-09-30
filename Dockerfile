@@ -28,14 +28,7 @@ COPY ext/gitconfig /home/dan9186/.gitconfig
 
 # Set ownerships
 RUN chown -R dan9186 $GOPATH && \
-	 chown -R dan9186 /usr/local/rvm && \
-	 chown -R dan9186 /home/dan9186
-
-# Install customizations into homedir
-USER dan9186
-ENV USER dan9186
-ENV PATH $HOME:$PATH
-RUN ln -s /gopath $HOME/go
+	 chown -R dan9186 /usr/local/rvm
 
 # Install custom shell
 RUN git clone https://github.com/myzsh/myzsh $HOME/.myzsh && \
@@ -53,6 +46,15 @@ RUN /usr/local/rvm/bin/rvm install 2.2.4 && \
 
 # Add rvm configs
 RUN /usr/local/rvm/bin/rvm rvmrc warning ignore allGemfiles
+
+# Make sure ownership is correct
+RUN chown -R dan9186 /home/dan9186
+
+# Install customizations into homedir
+USER dan9186
+ENV USER dan9186
+ENV PATH $HOME:$PATH
+RUN ln -s /gopath $HOME/go
 
 # Provide persistent project directory
 VOLUME ["/docker"]
