@@ -19,18 +19,16 @@ RUN yum -y update && \
     yum -y install sudo zsh
 
 # Create custom user
-RUN useradd -ms /bin/zsh dan9186
-RUN echo "dan9186 ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
+RUN useradd -ms /bin/zsh dan9186 && \
+	 echo "dan9186 ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
+
+# Add custom configs
+COPY ext/zshrc /home/dan9186/.zshrc
+COPY ext/gitconfig /home/dan9186/.gitconfig
 
 # Set ownerships
 RUN chown -R dan9186 $GOPATH && \
 	 chown -R dan9186 /usr/local/rvm
-
-# Install customizations into homedir
-USER dan9186
-ENV USER dan9186
-ENV PATH $HOME:$PATH
-RUN ln -s /gopath $HOME/go
 
 # Install custom shell
 RUN git clone https://github.com/myzsh/myzsh $HOME/.myzsh && \
@@ -49,12 +47,14 @@ RUN /usr/local/rvm/bin/rvm install 2.2.4 && \
 # Add rvm configs
 RUN /usr/local/rvm/bin/rvm rvmrc warning ignore allGemfiles
 
-# Add custom configs
-USER root
-ADD ext/zshrc /home/dan9186/.zshrc
-ADD ext/gitconfig /home/dan9186/.gitconfig
+# Make sure ownership is correct
 RUN chown -R dan9186 /home/dan9186
+
+# Install customizations into homedir
 USER dan9186
+ENV USER dan9186
+ENV PATH $HOME:$PATH
+RUN ln -s /gopath $HOME/go
 
 # Provide persistent project directory
 VOLUME ["/docker"]

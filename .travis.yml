@@ -1,7 +1,8 @@
-before_script:
-script:
-  - ./.travis/unshallow.sh
-  - ./.travis/changes.sh
-  - ./.travis/docker_build.sh
 services:
   - docker
+
+before_script:
+  - ./.travis/setup_env.sh
+
+script:
+  - ./.travis/docker_build.sh
