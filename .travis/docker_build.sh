@@ -1,5 +1,7 @@
 #!/bin/bash
 
+source .env
+
 if [[ "$GIT_CHANGES" == *"Dockerfile"* ]]; then
 	echo "Dockerfile changes detected, testing docker build"
 	docker build \
