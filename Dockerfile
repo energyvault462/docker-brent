@@ -22,6 +22,10 @@ RUN yum -y update && \
 RUN useradd -ms /bin/zsh dan9186 && \
 	 echo "dan9186 ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
+# Add custom configs
+ADD ext/zshrc /home/dan9186/.zshrc
+ADD ext/gitconfig /home/dan9186/.gitconfig
+
 # Set ownerships
 RUN chown -R dan9186 $GOPATH && \
 	 chown -R dan9186 /usr/local/rvm && \
@@ -49,13 +53,6 @@ RUN /usr/local/rvm/bin/rvm install 2.2.4 && \
 
 # Add rvm configs
 RUN /usr/local/rvm/bin/rvm rvmrc warning ignore allGemfiles
-
-# Add custom configs
-USER root
-ADD ext/zshrc /home/dan9186/.zshrc
-ADD ext/gitconfig /home/dan9186/.gitconfig
-RUN chown -R dan9186 /home/dan9186
-USER dan9186
 
 # Provide persistent project directory
 VOLUME ["/docker"]
