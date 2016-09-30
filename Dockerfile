@@ -19,12 +19,13 @@ RUN yum -y update && \
     yum -y install sudo zsh
 
 # Create custom user
-RUN useradd -ms /bin/zsh dan9186
-RUN echo "dan9186 ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
+RUN useradd -ms /bin/zsh dan9186 && \
+	 echo "dan9186 ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
 # Set ownerships
 RUN chown -R dan9186 $GOPATH && \
-	 chown -R dan9186 /usr/local/rvm
+	 chown -R dan9186 /usr/local/rvm && \
+	 chown -R dan9186 /home/dan9186
 
 # Install customizations into homedir
 USER dan9186
