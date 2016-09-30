@@ -23,8 +23,8 @@ RUN useradd -ms /bin/zsh dan9186 && \
 	 echo "dan9186 ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
 # Add custom configs
-ADD ext/zshrc /home/dan9186/.zshrc
-ADD ext/gitconfig /home/dan9186/.gitconfig
+COPY ext/zshrc /home/dan9186/.zshrc
+COPY ext/gitconfig /home/dan9186/.gitconfig
 
 # Set ownerships
 RUN chown -R dan9186 $GOPATH && \
