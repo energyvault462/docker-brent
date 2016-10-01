@@ -26,10 +26,6 @@ RUN useradd -ms /bin/zsh dan9186 && \
 COPY ext/zshrc /home/dan9186/.zshrc
 COPY ext/gitconfig /home/dan9186/.gitconfig
 
-# Set ownerships
-RUN chown -R dan9186 $GOPATH && \
-	 chown -R dan9186 /usr/local/rvm
-
 # Install custom shell
 RUN git clone https://github.com/myzsh/myzsh $HOME/.myzsh && \
     git clone http://github.com/myzsh/myzsh-golang $HOME/.myzsh/remotes/golang
@@ -46,7 +42,9 @@ RUN /usr/local/rvm/bin/rvm install 2.2.4 && \
 	 /usr/local/rvm/bin/rvm rvmrc warning ignore allGemfiles
 
 # Make sure ownership is correct
-RUN chown -R dan9186 /home/dan9186
+RUN chown -R dan9186 /home/dan9186 && \
+	 chown -R dan9186 $GOPATH && \
+	 chown -R dan9186 /usr/local/rvm
 
 # Install customizations into homedir
 USER dan9186
