@@ -28,7 +28,7 @@ COPY ext/gitconfig /home/dan9186/.gitconfig
 
 # Install custom shell
 RUN git clone https://github.com/myzsh/myzsh $HOME/.myzsh && \
-    git clone http://github.com/myzsh/myzsh-golang $HOME/.myzsh/remotes/golang
+    git clone https://github.com/myzsh/myzsh-golang $HOME/.myzsh/remotes/golang
 
 # Install custom vim settings
 RUN git clone --recursive https://github.com/dan9186/Vimderp.git $HOME/.vim && \
