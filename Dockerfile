@@ -22,17 +22,14 @@ RUN yum -y update && \
 RUN useradd -ms /bin/zsh dan9186 && \
 	 echo "dan9186 ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
-# Add custom configs
-COPY ext/zshrc /home/dan9186/.zshrc
-COPY ext/gitconfig /home/dan9186/.gitconfig
-
-# Set ownerships
-RUN chown -R dan9186 $GOPATH && \
-	 chown -R dan9186 /usr/local/rvm
+# Custom user installed and handled items
+USER dan9186
+ENV USER dan9186
+ENV PATH $HOME:$PATH
 
 # Install custom shell
 RUN git clone https://github.com/myzsh/myzsh $HOME/.myzsh && \
-    git clone http://github.com/myzsh/myzsh-golang $HOME/.myzsh/remotes/golang
+    git clone https://github.com/myzsh/myzsh-golang $HOME/.myzsh/remotes/golang
 
 # Install custom vim settings
 RUN git clone --recursive https://github.com/dan9186/Vimderp.git $HOME/.vim && \
@@ -40,23 +37,25 @@ RUN git clone --recursive https://github.com/dan9186/Vimderp.git $HOME/.vim && \
     ./install.sh && \
     ./bundle/YouCompleteMe/install.py --gocode-completer
 
-# Install versions of Ruby
+# Root installed and handled items
+# Install versions of Ruby and configs
+USER root
 RUN /usr/local/rvm/bin/rvm install 2.2.4 && \
-	 /usr/local/rvm/bin/rvm install 2.3.1
+	 /usr/local/rvm/bin/rvm install 2.3.1 && \
+	 /usr/local/rvm/bin/rvm rvmrc warning ignore allGemfiles
 
-# Add rvm configs
-RUN /usr/local/rvm/bin/rvm rvmrc warning ignore allGemfiles
+# Add custom config files
+COPY ext/zshrc /home/dan9186/.zshrc
+COPY ext/gitconfig /home/dan9186/.gitconfig
 
 # Make sure ownership is correct
-RUN chown -R dan9186 /home/dan9186
-
-# Install customizations into homedir
-USER dan9186
-ENV USER dan9186
-ENV PATH $HOME:$PATH
-RUN ln -s /gopath $HOME/go
+RUN ln -s /gopath /home/dan9186/go && \
+	 chown -R dan9186 /home/dan9186 && \
+	 chown -R dan9186 $GOPATH && \
+	 chown -R dan9186 /usr/local/rvm
 
 # Provide persistent project directory
 VOLUME ["/docker"]
 
-ENTRYPOINT ["/bin/zsh"]
+USER dan9186
+CMD ["/bin/zsh"]
