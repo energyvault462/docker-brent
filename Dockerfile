@@ -40,12 +40,10 @@ RUN git clone --recursive https://github.com/dan9186/Vimderp.git $HOME/.vim && \
     ./install.sh && \
     ./bundle/YouCompleteMe/install.py --gocode-completer
 
-# Install versions of Ruby
+# Install versions of Ruby and configs
 RUN /usr/local/rvm/bin/rvm install 2.2.4 && \
-	 /usr/local/rvm/bin/rvm install 2.3.1
-
-# Add rvm configs
-RUN /usr/local/rvm/bin/rvm rvmrc warning ignore allGemfiles
+	 /usr/local/rvm/bin/rvm install 2.3.1 && \
+	 /usr/local/rvm/bin/rvm rvmrc warning ignore allGemfiles
 
 # Make sure ownership is correct
 RUN chown -R dan9186 /home/dan9186
