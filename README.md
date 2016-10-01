@@ -1,5 +1,5 @@
 # Personalized Docker Development Environment
-[![Build Status](https://travis-ci.org/dan9186/docker-dan9186.svg?branch=master)](https://travis-ci.org/dan9186/docker-dan9186) [![License](http://img.shields.io/:license-mit-green.svg)](http://dan9186.mit-license.org) [![Docker Pulls](https://img.shields.io/docker/pulls/dan9186/dan9186.svg)]() [![Docker Automated buil](https://img.shields.io/docker/automated/dan9186/dan9186.svg)]()
+[![Build Status](https://travis-ci.org/dan9186/docker-dan9186.svg?branch=master)](https://travis-ci.org/dan9186/docker-dan9186) [![License](http://img.shields.io/:license-mit-green.svg)](http://dan9186.mit-license.org) [![Docker Pulls](https://img.shields.io/docker/pulls/dan9186/dan9186.svg)](https://hub.docker.com/r/dan9186/dan9186/) [![Docker Automated buil](https://img.shields.io/docker/automated/dan9186/dan9186.svg)](https://hub.docker.com/r/dan9186/dan9186/) [![Github Releases](https://img.shields.io/github/release/dan9186/docker-dan9186.svg)](https://github.com/dan9186/docker-dan9186/releases/latest)
 
 A personalized development environment to include everything needed for Dan9186's daily development cycle.
 
