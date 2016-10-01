@@ -55,4 +55,4 @@ RUN ln -s /gopath $HOME/go
 # Provide persistent project directory
 VOLUME ["/docker"]
 
-ENTRYPOINT ["/bin/zsh"]
+CMD ["/bin/zsh"]
