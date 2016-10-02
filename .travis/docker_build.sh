@@ -20,7 +20,7 @@ if [[ "$GIT_CHANGES" == *"Dockerfile"* || "$DEBUG" == "true" ]]; then
 	echo "		Image Version: $IMAGE_VERSION"
 
 	docker build \
-		-t $IMAGE_NAME
+		-t $IMAGE_NAME \
 		--build-arg BUILD_DATE=$BUILD_DATE \
 		--build-arg BUILD_NUMBER=$BUILD_NUMBER \
 		--build-arg VERSION=$IMAGE_VERSION \
