@@ -2,6 +2,10 @@
 
 source .env
 
+if [ "$DEBUG" == "true" ]; then
+	echo "Debug enabled"
+fi
+
 if [[ "$GIT_CHANGES" == *"Dockerfile"* || "$DEBUG" == "true" ]]; then
 	echo "Dockerfile changes detected\n"
 
