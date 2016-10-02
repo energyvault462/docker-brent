@@ -7,17 +7,17 @@ if [ "$DEBUG" == "true" ]; then
 fi
 
 if [[ "$GIT_CHANGES" == *"Dockerfile"* || "$DEBUG" == "true" ]]; then
-	echo "Dockerfile changes detected\n"
+	echo "Dockerfile changes detected"
 
 	BUILD_DATE=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
 	BUILD_NUMBER=$TRAVIS_BUILD_NUMBER
 	IMAGE_VERSION="0.0.1"
 
 	echo "Testing Dockerfile"
-	echo "\tName: $IMAGE_NAME"
-	echo "\tBuild Date: $BUILD_DATE"
-	echo "\tBuild Number: $BUILD_NUMBER"
-	echo "\tImage Version: $IMAGE_VERSION"
+	echo "		Name: $IMAGE_NAME"
+	echo "		Build Date: $BUILD_DATE"
+	echo "		Build Number: $BUILD_NUMBER"
+	echo "		Image Version: $IMAGE_VERSION"
 
 	docker build \
 		-t $IMAGE_NAME
