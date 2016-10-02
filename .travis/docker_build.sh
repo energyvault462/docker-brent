@@ -28,7 +28,9 @@ if [[ "$GIT_CHANGES" == *"Dockerfile"* || "$DEBUG" == "true" ]]; then
 		.
 
 	echo "Testing Docker Image"
-	[ "$(docker run -it --rm $IMAGE_NAME whoami)" == "dan9186" ]
+	RESULT="$(docker run -it --rm $IMAGE_NAME whoami)"
+	EXPECTED="dan9186"
+	[[ "$RESULT" == *"$EXPECTED"* ]] || echo "Failed -- Got: $RESULT Expected: $EXPECTED"
 
 else
 	echo "No Dockerfile changes, skipping docker build"
