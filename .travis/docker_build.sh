@@ -2,7 +2,7 @@
 
 source .env
 
-if [[ "$GIT_CHANGES" == *"Dockerfile"* || "$DUBUG" == "true" ]]; then
+if [[ "$GIT_CHANGES" == *"Dockerfile"* || "$DEBUG" == "true" ]]; then
 	echo "Dockerfile changes detected\n"
 
 	BUILD_DATE=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
