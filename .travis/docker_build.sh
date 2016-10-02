@@ -19,6 +19,7 @@ if [[ "$GIT_CHANGES" == *"Dockerfile"* || "$DEBUG" == "true" ]]; then
 	echo "		Build Number: $BUILD_NUMBER"
 	echo "		Image Version: $IMAGE_VERSION"
 
+	docker pull $IMAGE_NAME
 	docker build \
 		-t $IMAGE_NAME \
 		--build-arg BUILD_DATE=$BUILD_DATE \
