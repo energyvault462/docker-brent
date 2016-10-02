@@ -2,12 +2,24 @@
 
 source .env
 
-if [[ "$GIT_CHANGES" == *"Dockerfile"* ]]; then
-	echo "Dockerfile changes detected, testing docker build"
+if [[ "$GIT_CHANGES" == *"Dockerfile"* || "$DUBUG" = true ]]; then
+	echo "Dockerfile changes detected\n"
+
+	BUILD_DATE=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+	BUILD_NUMBER=$TRAVIS_BUILD_NUMBER
+	IMAGE_VERSION="0.0.1"
+
+	echo "Testing Dockerfile"
+	echo "\tName: $IMAGE_NAME"
+	echo "\tBuild Date: $BUILD_DATE"
+	echo "\tBuild Number: $BUILD_NUMBER"
+	echo "\tImage Version: $IMAGE_VERSION"
+
 	docker build \
-		--build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` \
-		--build-arg BUILD_NUMBER=$TRAVIS_BUILD_NUMBER \
-		--build-arg VERSION="0.0.1" \
+		-t $IMAGE_NAME
+		--build-arg BUILD_DATE=$BUILD_DATE \
+		--build-arg BUILD_NUMBER=$BUILD_NUMBER \
+		--build-arg VERSION=$IMAGE_VERSION \
 		.
 else
 	echo "No Dockerfile changes, skipping docker build"
