@@ -32,6 +32,12 @@ if [[ "$GIT_CHANGES" == *"Dockerfile"* || "$DEBUG" == "true" ]]; then
 	EXPECTED="dan9186"
 	[[ "$RESULT" == *"$EXPECTED"* ]] || echo "Failed -- Got: $RESULT Expected: $EXPECTED"
 
+	RESULT="$(docker run -it --rm $IMAGE_NAME yum list installed | cut -d ' ' -f 1 | sed -e 's/\.x86_64//' -e 's/\.noarch//')"
+	EXPECTED=("zsh")
+	for E in $EXPECTED; do
+		[[ "$RESULT" == *"$E"* ]] || echo "Failed -- $E package not found installed"
+	done
+
 else
 	echo "No Dockerfile changes, skipping docker build"
 fi
