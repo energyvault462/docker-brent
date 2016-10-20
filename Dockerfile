@@ -45,8 +45,9 @@ RUN /usr/local/rvm/bin/rvm install 2.2.4 && \
 	 /usr/local/rvm/bin/rvm rvmrc warning ignore allGemfiles
 
 # Add custom config files
-COPY ext/zshrc /home/dan9186/.zshrc
-COPY ext/gitconfig /home/dan9186/.gitconfig
+RUN git clone https://github.com/dan9186/dotfiles && \
+	 cd $HOME/dotifles && \
+	 ./install.sh
 
 # Make sure ownership is correct
 RUN ln -s /gopath /home/dan9186/go && \
