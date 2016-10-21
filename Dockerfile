@@ -51,7 +51,6 @@ RUN /usr/local/rvm/bin/rvm install 2.2.4 && \
 
 # Make sure ownership is correct
 RUN ln -s /gopath /home/dan9186/go && \
-	 chown -R dan9186 /home/dan9186 && \
 	 chown -R dan9186 $GOPATH && \
 	 chown -R dan9186 /usr/local/rvm
 
