@@ -37,17 +37,17 @@ RUN git clone --recursive https://github.com/dan9186/Vimderp.git $HOME/.vim && \
     ./install.sh && \
     ./bundle/YouCompleteMe/install.py --gocode-completer
 
+# Add custom config files
+RUN git clone https://github.com/dan9186/dotfiles $HOME/dotfiles && \
+	 cd $HOME/dotfiles && \
+	 ./install.sh
+
 # Root installed and handled items
 # Install versions of Ruby and configs
 USER root
 RUN /usr/local/rvm/bin/rvm install 2.2.4 && \
 	 /usr/local/rvm/bin/rvm install 2.3.1 && \
 	 /usr/local/rvm/bin/rvm rvmrc warning ignore allGemfiles
-
-# Add custom config files
-RUN git clone https://github.com/dan9186/dotfiles && \
-	 cd $HOME/dotifles && \
-	 ./install.sh
 
 # Make sure ownership is correct
 RUN ln -s /gopath /home/dan9186/go && \
