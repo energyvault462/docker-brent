@@ -29,7 +29,9 @@ ENV PATH $HOME:$PATH
 
 # Install custom shell
 RUN git clone https://github.com/myzsh/myzsh $HOME/.myzsh && \
-    git clone https://github.com/myzsh/myzsh-golang $HOME/.myzsh/remotes/golang
+    git clone https://github.com/myzsh/myzsh-golang $HOME/.myzsh/remotes/golang && \
+    git clone https://github.com/myzsh/myzsh-timer $HOME/.myzsh/remotes/timer && \
+    git clone https://github.com/dan9186/myzsh-dan9186 $HOME/.myzsh/remotes/dan9186
 
 # Install custom vim settings
 RUN git clone --recursive https://github.com/dan9186/Vimderp.git $HOME/.vim && \
@@ -45,8 +47,7 @@ RUN git clone https://github.com/dan9186/dotfiles $HOME/dotfiles && \
 # Root installed and handled items
 # Install versions of Ruby and configs
 USER root
-RUN /usr/local/rvm/bin/rvm install 2.2.4 && \
-	 /usr/local/rvm/bin/rvm install 2.3.1 && \
+RUN /usr/local/rvm/bin/rvm install 2.3.1 && \
 	 /usr/local/rvm/bin/rvm rvmrc warning ignore allGemfiles
 
 # Make sure ownership is correct
