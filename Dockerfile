@@ -26,6 +26,7 @@ RUN useradd -ms /bin/zsh dan9186 && \
 USER dan9186
 ENV USER dan9186
 ENV PATH $HOME:$PATH
+ENV DOCKER true
 
 # Install custom shell
 RUN git clone https://github.com/myzsh/myzsh $HOME/.myzsh && \
