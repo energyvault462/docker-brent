@@ -48,7 +48,7 @@ RUN git clone https://github.com/dan9186/dotfiles $HOME/dotfiles && \
 # Root installed and handled items
 # Install versions of Ruby and configs
 USER root
-RUN /usr/local/rvm/bin/rvm install 2.3.1 && \
+RUN /usr/local/rvm/bin/rvm install 2.3.3 && \
 	 /usr/local/rvm/bin/rvm rvmrc warning ignore allGemfiles
 
 # Make sure ownership is correct
