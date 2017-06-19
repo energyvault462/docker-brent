@@ -50,9 +50,10 @@ RUN git clone https://github.com/energyvault462/dotfiles $HOME/dotfiles && \
 # Root installed and handled items
 # Install versions of Ruby and configs
 USER root
-RUN /usr/local/rvm/bin/rvm install 2.3.3 && \
-	 /usr/local/rvm/bin/rvm rvmrc warning ignore allGemfiles
-RUN /usr/local/rvm/bin/rvm install 2.1.1 && \
+#RUN /usr/local/rvm/bin/rvm install 2.3.3 && \
+#	 /usr/local/rvm/bin/rvm rvmrc warning ignore allGemfiles
+
+RUN /usr/local/rvm/bin/rvm install 2.3.0 && \
          /usr/local/rvm/bin/rvm rvmrc warning ignore allGemfiles
 
 # Make sure ownership is correct
@@ -63,11 +64,6 @@ RUN ln -s /gopath /home/brent/go && \
 
 # Provide persistent project directory
 VOLUME ["/docker"]
-
-USER brent
-RUN echo 'source /etc/profile.d/rvm.sh' >> ~/.bashrc
-RUN /bin/bash -l -c "gem install bundler"
-RUN bundle install
 
 USER brent
 CMD ["/bin/zsh"]

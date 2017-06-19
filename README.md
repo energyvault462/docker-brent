@@ -18,8 +18,9 @@ Use common configs and keys
 
 ```
 docker run -it \
--v $HOME/.gitconfig:~/.gitconfig \
--v $HOME/.ssh:~/.ssh \
+-v $HOME/.gitconfig:/home/brent/.gitconfig \
+-v $HOME/.ssh:/home/brent/.ssh \
+-v /nas:/nas \
 -v $PWD:/docker energyvault462/dockerbrent
 ```
 
