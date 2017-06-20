@@ -20,7 +20,7 @@ RUN yum -y update && \
     yum -y install sudo zsh libgemplugin-ruby build-essential
 
 # Create custom user
-RUN useradd -ms /bin/zsh brent && \
+RUN useradd -u 2001 -ms /bin/zsh brent && \
 	 echo "brent ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
 # Custom user installed and handled items
