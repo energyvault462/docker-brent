@@ -62,8 +62,14 @@ RUN ln -s /gopath /home/brent/go && \
 	 chown -R brent $GOPATH && \
 	 chown -R brent /usr/local/rvm
 
+# Install Zsh
+USER brent
+RUN git clone git://github.com/robbyrussell/oh-my-zsh.git $HOME/.oh-my-zsh \
+      && chsh -s /bin/zsh
+
 # Provide persistent project directory
 VOLUME ["/docker"]
 
+WORKDIR  /home/brent
 USER brent
 CMD ["/bin/zsh"]
