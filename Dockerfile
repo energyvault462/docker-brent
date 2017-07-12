@@ -17,23 +17,32 @@ LABEL org.metadata.build-date=$BUILD_DATE \
 # Install custom deps
 RUN yum -y update && \
     yum -y upgrade && \
-    yum -y install sudo zsh libgemplugin-ruby build-essential nano
-
-
-RUN pip install -U pytest
+    yum -y install sudo zsh libgemplugin-ruby build-essential
 
 # Create custom user
 RUN useradd -u 2001 -ms /bin/zsh brent && \
 	 echo "brent ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
+
+# Root installed and handled items
+# Install versions of Ruby and configs
+USER root
+#RUN /usr/local/rvm/bin/rvm install 2.3.3 && \
+#	 /usr/local/rvm/bin/rvm rvmrc warning ignore allGemfiles
+
+RUN /usr/local/rvm/bin/rvm install 2.3.0 && \
+         /usr/local/rvm/bin/rvm rvmrc warning ignore allGemfiles
+		 
 # Custom user installed and handled items
 USER brent
 ENV USER brent
 ENV PATH $HOME:$PATH
 ENV DOCKER true
 
+
 # Install custom shell
-RUN git clone https://github.com/myzsh/myzsh $HOME/.myzsh
+ARG FORCE_NEW_BUILD=unknown
+RUN FORCE_NEW_BUILD=${GIT_PULL_TIME} git clone https://github.com/myzsh/myzsh $HOME/.myzsh
 # if uncommenting any below, add follow to above line:  && \
 #    git clone https://github.com/myzsh/myzsh-golang $HOME/.myzsh/remotes/golang && \
 #    git clone https://github.com/myzsh/myzsh-timer $HOME/.myzsh/remotes/timer && \
@@ -50,16 +59,10 @@ RUN git clone https://github.com/energyvault462/dotfiles $HOME/dotfiles && \
 	 cd $HOME/dotfiles && \
 	 ./install.sh
 
-# Root installed and handled items
-# Install versions of Ruby and configs
-USER root
-#RUN /usr/local/rvm/bin/rvm install 2.3.3 && \
-#	 /usr/local/rvm/bin/rvm rvmrc warning ignore allGemfiles
 
-RUN /usr/local/rvm/bin/rvm install 2.3.0 && \
-         /usr/local/rvm/bin/rvm rvmrc warning ignore allGemfiles
 
 # Make sure ownership is correct
+USER root
 RUN ln -s /gopath /home/brent/go && \
 	 chown -R brent /home/brent && \
 	 chown -R brent $GOPATH && \

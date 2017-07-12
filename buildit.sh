@@ -1,5 +1,5 @@
 #!/bin/bash
 
-docker build -t energyvault462/brent .
+docker build --build-arg FORCE_NEW_BUILD="$(date)" -t energyvault462/brent .
 
 
