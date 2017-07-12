@@ -17,7 +17,10 @@ LABEL org.metadata.build-date=$BUILD_DATE \
 # Install custom deps
 RUN yum -y update && \
     yum -y upgrade && \
-    yum -y install sudo zsh libgemplugin-ruby build-essential
+    yum -y install sudo zsh libgemplugin-ruby build-essential nano
+
+
+RUN pip install -U pytest
 
 # Create custom user
 RUN useradd -u 2001 -ms /bin/zsh brent && \
