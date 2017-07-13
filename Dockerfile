@@ -17,7 +17,12 @@ LABEL org.metadata.build-date=$BUILD_DATE \
 # Install custom deps
 RUN yum -y update && \
     yum -y upgrade && \
-    yum -y install sudo zsh libgemplugin-ruby build-essential
+    yum -y install sudo zsh libgemplugin-ruby build-essential par2cmdline 
+
+# Install python3
+RUN wget https://www.python.org/ftp/python/3.6.1/Python-3.6.1.tar.xz && \
+    tar xf Python-3.* && cd Python-3.* && \
+    ./configure && make && make install
 
 # Create custom user
 RUN useradd -u 2001 -ms /bin/zsh brent && \
@@ -39,8 +44,12 @@ ENV USER brent
 ENV PATH $HOME:$PATH
 ENV DOCKER true
 
+# Install Pytest
+USER root
+RUN pip install -U pytest
 
 # Install custom shell
+USER brent
 ARG FORCE_NEW_BUILD=unknown
 RUN FORCE_NEW_BUILD=${GIT_PULL_TIME} git clone https://github.com/myzsh/myzsh $HOME/.myzsh
 # if uncommenting any below, add follow to above line:  && \
