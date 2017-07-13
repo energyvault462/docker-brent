@@ -47,6 +47,7 @@ ENV DOCKER true
 # Install Pytest
 USER root
 RUN pip install -U pytest
+run pip3 install -U pytest
 
 # Install custom shell
 USER brent
