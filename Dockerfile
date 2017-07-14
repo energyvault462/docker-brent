@@ -17,7 +17,7 @@ LABEL org.metadata.build-date=$BUILD_DATE \
 # Install custom deps
 RUN yum -y update && \
     yum -y upgrade && \
-    yum -y install sudo zsh libgemplugin-ruby build-essential par2cmdline 
+    yum -y install sudo zsh libgemplugin-ruby build-essential par2cmdline nano
 
 # Install python3
 RUN wget https://www.python.org/ftp/python/3.6.1/Python-3.6.1.tar.xz && \
